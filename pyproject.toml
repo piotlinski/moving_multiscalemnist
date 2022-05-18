@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "moving-multiscalemnist"
+version = "0.1.0"
+description = ""
+authors = ["Piotr Zieliński <piotlinski@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+addopts = "--color=yes --disable-socket --allow-unix-socket --random-order"
+
+[tool.isort]
+line_length = 88
+multi_line_output = 3
+include_trailing_comma = "True"
+
+[tool.mypy]
+ignore_missing_imports = "True"

@@ -1,0 +1,5 @@
+[core]
+    remote = thorium
+['remote "thorium"']
+    url = ssh://pzielinski@thorium/home/pzielinski/.dvc
+    ask_password = true
