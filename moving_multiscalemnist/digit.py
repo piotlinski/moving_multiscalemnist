@@ -60,6 +60,18 @@ class Digit:
     def size(self) -> int:
         return int(self._size * self._sin())
 
+    @property
+    def bbox(self) -> Tuple[int, int, int, int]:
+        """Calculate X1Y1X2Y2 bbox coordinates.
+
+        .. note: MNIST digits are usually smaller than the image, hence for tight bbox
+            coordinates need to be recalculated
+        """
+        coords = np.where(np.array(self.image) > 0)
+        white_ys = coords[0]
+        white_xs = coords[1]
+        return white_xs.min(), white_ys.min(), white_xs.max(), white_ys.max()
+
     def shall_bounce_horizontally(self) -> bool:
         return self._x <= 0 or 1 <= self._x
 
