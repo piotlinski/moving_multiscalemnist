@@ -1,0 +1,12 @@
+stages:
+  fetch_mnist:
+    cmd: |
+      wget http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz -O mnist/train-images.gz
+      && wget http://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz -O mnist/train-labels.gz
+      && wget http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz -O mnist/test-images.gz
+      && wget http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz -O mnist/test-labels.gz
+    outs:
+      - mnist/test-images.gz
+      - mnist/test-labels.gz
+      - mnist/train-images.gz
+      - mnist/train-labels.gz
