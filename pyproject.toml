@@ -7,6 +7,7 @@ authors = ["Piotr Zieliński <piotlinski@gmail.com>"]
 [tool.poetry.dependencies]
 python = "^3.9"
 numpy = "^1.22.3"
+Pillow = "^9.1.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
