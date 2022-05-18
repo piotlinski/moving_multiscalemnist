@@ -2,3 +2,7 @@
 /train-labels.gz
 /test-images.gz
 /test-labels.gz
+/test-images
+/test-labels
+/train-images
+/train-labels
