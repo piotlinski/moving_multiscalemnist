@@ -1,6 +1,8 @@
 import argparse
 import logging
 
+import numpy as np
+
 from moving_multiscalemnist.defaults import (
     DATA_DIR,
     FPS,
@@ -9,6 +11,7 @@ from moving_multiscalemnist.defaults import (
     MIN_DIGITS,
     N_FRAMES,
     OSCILLATIONS,
+    SEED,
     SIZES,
     TEST_SIZE,
     TRAIN_SIZE,
@@ -19,6 +22,7 @@ logging.basicConfig(level=logging.INFO)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
+    parser.add_argument("--seed", "-s", help="Random seed", type=int, default=SEED)
     parser.add_argument("--data-dir", "-d", help="MNIST location", default=DATA_DIR)
     parser.add_argument(
         "--train-size", "-trs", help="Train subset size", type=int, default=TRAIN_SIZE
@@ -69,6 +73,7 @@ if __name__ == "__main__":
     )
 
     args = parser.parse_args()
+    np.random.seed(args.seed)
     generate_dataset(
         data_dir=args.data_dir,
         train_size=args.train_size,

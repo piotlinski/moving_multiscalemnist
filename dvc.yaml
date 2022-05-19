@@ -14,3 +14,28 @@ stages:
       - mnist/test-labels
       - mnist/train-images
       - mnist/train-labels
+  generate:
+    cmd: poetry run python moving_multiscalemnist
+    deps:
+      - moving_multiscalemnist/__main__.py
+      - moving_multiscalemnist/digit.py
+      - moving_multiscalemnist/generate.py
+      - moving_multiscalemnist/mnist.py
+      - moving_multiscalemnist/sequence.py
+      - poetry.lock
+      - pyproject.toml
+    params:
+      - moving_multiscalemnist/defaults.py:
+          - DATA_DIR
+          - FPS
+          - IMAGE_SIZE
+          - MAX_DIGITS
+          - MIN_DIGITS
+          - N_FRAMES
+          - OSCILLATIONS
+          - SEED
+          - SIZES
+          - TEST_SIZE
+          - TRAIN_SIZE
+    outs:
+      - dataset/
