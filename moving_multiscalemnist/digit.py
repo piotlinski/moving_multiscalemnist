@@ -25,7 +25,7 @@ class Digit:
         :param oscillations: oscillation period factor
         :param fps: number of frames per second (period)
         """
-        self.image = Image.fromarray(image)
+        self._image = Image.fromarray(image)
         self.label = label
 
         self._size = np.random.choice(sizes)
@@ -43,7 +43,9 @@ class Digit:
         self._t: int = 0
         self._T: int = fps
 
-        self._resize()
+    @property
+    def image(self) -> Image.Image:
+        return self._image.resize((self.size, self.size))
 
     def _sin(self) -> float:
         return round(1 + np.sin(self._t / (self._T * self._osc_t) * 2 * np.pi) / 2, 2)
@@ -82,12 +84,8 @@ class Digit:
         self._x += self._vel_x / self._T
         self._y += self._vel_y / self._T
 
-    def _resize(self):
-        self.image = self.image.resize((self.size, self.size))
-
     def update(self) -> "Digit":
         self._update_position()
-        self._resize()
 
         if self.shall_bounce_horizontally():
             self._vel_x = -self._vel_x

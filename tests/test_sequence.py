@@ -24,7 +24,7 @@ def test_get_bbox_coords(bbox, x1, y1, image_size, expected):
 
 def test_prepare_sequence(sample_digit):
     """Verify if sequence contains prepared digits images."""
-    (frame_0, bboxes_0, labels_0), (frame_1, bboxes_1, labels_1) = list(
+    (frame_0, bboxes_0, labels_0, ids_0), (frame_1, bboxes_1, labels_1, ids_1) = list(
         prepare_sequence([sample_digit], n_frames=2, image_size=(128, 128))
     )
 
@@ -32,7 +32,8 @@ def test_prepare_sequence(sample_digit):
 
     assert bboxes_0[0][0] < bboxes_1[0][0]
     assert bboxes_0[0][1] < bboxes_1[0][1]
-    assert bboxes_0[0][2] == bboxes_1[0][2]
-    assert bboxes_0[0][3] == bboxes_1[0][3]
+    assert bboxes_0[0][2] < bboxes_1[0][2]
+    assert bboxes_0[0][3] < bboxes_1[0][3]
 
     assert labels_0[0] == labels_1[0] == sample_digit.label
+    assert ids_0[0] == ids_1[0]
