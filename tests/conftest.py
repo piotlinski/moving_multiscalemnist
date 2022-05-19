@@ -8,7 +8,7 @@ from moving_multiscalemnist.digit import Digit
 
 @pytest.fixture
 @patch("numpy.random.uniform", return_value=0.5)
-@patch("numpy.random.choice", side_effect=[32, 1.0, 1])
+@patch("numpy.random.choice", side_effect=[32, 1.0, 0.5, 1])
 def sample_digit(_choice_mock, _uniform_mock):
     """Return sample digit object."""
     image = np.zeros((32, 32))

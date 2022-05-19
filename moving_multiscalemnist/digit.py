@@ -15,6 +15,7 @@ class Digit:
         image_size: Tuple[int, int],
         sizes: Tuple[int, ...],
         oscillations: Tuple[float, ...] = (0.8, 1.0, 1.2, 1.4),
+        oscillations_variances: Tuple[float, ...] = (0.0, 0.1, 0.2, 0.3),
         fps: int = 10,
     ):
         """
@@ -23,6 +24,7 @@ class Digit:
         :param image_size: target image size (width, height)
         :param sizes: available digit sizes
         :param oscillations: oscillation period factor
+        :param oscillations_variances: proportion in which size oscillates
         :param fps: number of frames per second (period)
         """
         self._image = Image.fromarray(image)
@@ -38,6 +40,7 @@ class Digit:
         self._vel_y = np.random.uniform(-1, 1)
 
         self._osc_t = np.random.choice(oscillations)
+        self._osc_var = np.random.choice(oscillations_variances)
         self._osc_dir = np.random.choice([1, -1])
 
         self._t: int = 0
@@ -48,7 +51,9 @@ class Digit:
         return self._image.resize((self.size, self.size))
 
     def _sin(self) -> float:
-        return round(1 + np.sin(self._t / (self._T * self._osc_t) * 2 * np.pi) / 2, 2)
+        return round(
+            1 + np.sin(self._t / (self._T * self._osc_t) * 2 * np.pi) * self._osc_var, 2
+        )
 
     @property
     def x1(self) -> int:

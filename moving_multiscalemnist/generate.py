@@ -31,6 +31,7 @@ def generate_subset(
     image_size: Tuple[int, int],
     sizes: Tuple[int, ...],
     oscillations: Tuple[float, ...],
+    oscillations_variances: Tuple[float, ...],
     fps: int,
 ) -> Generator[
     Iterable[
@@ -49,6 +50,7 @@ def generate_subset(
     :param image_size: frame size
     :param sizes: available digit sizes
     :param oscillations: digit size change periods coefficients
+    :param oscillations_variances: proportion in which size oscillates
     :param fps: number of frames in one second (period length)
     :return: generator of sequences of frames, boxes, labels and track ids
     """
@@ -67,6 +69,7 @@ def generate_subset(
                 image_size=image_size,
                 sizes=sizes,
                 oscillations=oscillations,
+                oscillations_variances=oscillations_variances,
                 fps=fps,
             )
             for idx in range(start_idx, end_idx + 1)
@@ -86,6 +89,7 @@ def generate_dataset(
     image_size: Tuple[int, int],
     sizes: Tuple[int, ...],
     oscillations: Tuple[float, ...],
+    oscillations_variances: Tuple[float, ...],
     fps: int,
 ):
     """Generate sequences and save to file."""
@@ -102,6 +106,7 @@ def generate_dataset(
             image_size=image_size,
             sizes=sizes,
             oscillations=oscillations,
+            oscillations_variances=oscillations_variances,
             fps=fps,
         )
     ):
@@ -118,6 +123,7 @@ def generate_dataset(
             image_size=image_size,
             sizes=sizes,
             oscillations=oscillations,
+            oscillations_variances=oscillations_variances,
             fps=fps,
         )
     ):

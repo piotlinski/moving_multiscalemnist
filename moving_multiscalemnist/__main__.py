@@ -11,6 +11,7 @@ from moving_multiscalemnist.defaults import (
     MIN_DIGITS,
     N_FRAMES,
     OSCILLATIONS,
+    OSCILLATIONS_VARIANCES,
     SEED,
     SIZES,
     TEST_SIZE,
@@ -69,6 +70,14 @@ if __name__ == "__main__":
         default=OSCILLATIONS,
     )
     parser.add_argument(
+        "--oscillations-variances",
+        "-ov",
+        help="Size oscillation variances",
+        nargs="+",
+        type=float,
+        default=OSCILLATIONS_VARIANCES,
+    )
+    parser.add_argument(
         "--fps", help="Frames per second (period length)", type=float, default=FPS
     )
 
@@ -84,5 +93,6 @@ if __name__ == "__main__":
         image_size=args.image_size,
         sizes=args.sizes,
         oscillations=args.oscillations,
+        oscillations_variances=args.oscillations_variances,
         fps=args.fps,
     )
