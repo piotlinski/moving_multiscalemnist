@@ -65,6 +65,7 @@ optional = false
 python-versions = ">= 3.6"
 
 [package.dependencies]
+bcrypt = {version = ">=3.1.3", optional = true, markers = "extra == \"bcrypt\""}
 cryptography = ">=3.1"
 typing-extensions = ">=3.6"
 
@@ -106,6 +107,21 @@ dev = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", 
 docs = ["furo", "sphinx", "zope.interface", "sphinx-notfound-page"]
 tests = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", "six", "mypy", "pytest-mypy-plugins", "zope.interface", "cloudpickle"]
 tests_no_zope = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", "six", "mypy", "pytest-mypy-plugins", "cloudpickle"]
+
+[[package]]
+name = "bcrypt"
+version = "3.2.2"
+description = "Modern password hashing for your software and your servers"
+category = "dev"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+cffi = ">=1.1"
+
+[package.extras]
+tests = ["pytest (>=3.2.1,!=3.3.0)"]
+typecheck = ["mypy"]
 
 [[package]]
 name = "certifi"
@@ -254,6 +270,7 @@ python-versions = ">=3.7"
 [package.dependencies]
 aiohttp-retry = ">=2.4.5"
 appdirs = ">=1.4.3"
+bcrypt = {version = "*", optional = true, markers = "extra == \"ssh\""}
 colorama = ">=0.3.9"
 configobj = ">=5.0.6"
 dictdiffer = ">=0.8.1"
@@ -282,6 +299,7 @@ rich = ">=10.13.0"
 scmrepo = "0.0.19"
 shortuuid = ">=0.5.0"
 shtab = ">=1.3.4,<2"
+sshfs = {version = ">=2021.11.2", extras = ["bcrypt"], optional = true, markers = "extra == \"ssh\""}
 tabulate = ">=0.8.7"
 toml = ">=0.10.1"
 tqdm = ">=4.63.1,<5"
@@ -860,6 +878,30 @@ optional = false
 python-versions = ">=3.6"
 
 [[package]]
+name = "sshfs"
+version = "2022.3.1"
+description = "SSH Filesystem -- Async SSH/SFTP backend for fsspec"
+category = "dev"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+asyncssh = [
+    {version = ">=2.7.1,<3"},
+    {version = "*", extras = ["bcrypt"], optional = true, markers = "extra == \"bcrypt\""},
+]
+fsspec = ">=2021.8.1"
+
+[package.extras]
+bcrypt = ["asyncssh"]
+fido2 = ["asyncssh"]
+gssapi = ["asyncssh"]
+libnacl = ["asyncssh"]
+pkcs11 = ["asyncssh"]
+pyopenssl = ["asyncssh"]
+pywin32 = ["asyncssh"]
+
+[[package]]
 name = "tabulate"
 version = "0.8.9"
 description = "Pretty-print tabular data"
@@ -974,7 +1016,7 @@ test = ["zope.testing"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "7069d32750e1edace81c8392c6c8816f00e7725fd627b15961dd41c191968b79"
+content-hash = "9c05be038f4836c0dd11d54f4f7c2b448e9fec6ae0e2001bb62c787aead20ec1"
 
 [metadata.files]
 aiohttp = [
@@ -1082,6 +1124,19 @@ atpublic = [
 attrs = [
     {file = "attrs-21.4.0-py2.py3-none-any.whl", hash = "sha256:2d27e3784d7a565d36ab851fe94887c5eccd6a463168875832a1be79c82828b4"},
     {file = "attrs-21.4.0.tar.gz", hash = "sha256:626ba8234211db98e869df76230a137c4c40a12d72445c45d5f5b716f076e2fd"},
+]
+bcrypt = [
+    {file = "bcrypt-3.2.2-cp36-abi3-macosx_10_10_universal2.whl", hash = "sha256:7180d98a96f00b1050e93f5b0f556e658605dd9f524d0b0e68ae7944673f525e"},
+    {file = "bcrypt-3.2.2-cp36-abi3-manylinux_2_17_aarch64.manylinux2014_aarch64.manylinux_2_24_aarch64.whl", hash = "sha256:61bae49580dce88095d669226d5076d0b9d927754cedbdf76c6c9f5099ad6f26"},
+    {file = "bcrypt-3.2.2-cp36-abi3-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:88273d806ab3a50d06bc6a2fc7c87d737dd669b76ad955f449c43095389bc8fb"},
+    {file = "bcrypt-3.2.2-cp36-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_24_x86_64.whl", hash = "sha256:6d2cb9d969bfca5bc08e45864137276e4c3d3d7de2b162171def3d188bf9d34a"},
+    {file = "bcrypt-3.2.2-cp36-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:2b02d6bfc6336d1094276f3f588aa1225a598e27f8e3388f4db9948cb707b521"},
+    {file = "bcrypt-3.2.2-cp36-abi3-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl", hash = "sha256:a2c46100e315c3a5b90fdc53e429c006c5f962529bc27e1dfd656292c20ccc40"},
+    {file = "bcrypt-3.2.2-cp36-abi3-musllinux_1_1_aarch64.whl", hash = "sha256:7d9ba2e41e330d2af4af6b1b6ec9e6128e91343d0b4afb9282e54e5508f31baa"},
+    {file = "bcrypt-3.2.2-cp36-abi3-musllinux_1_1_x86_64.whl", hash = "sha256:cd43303d6b8a165c29ec6756afd169faba9396a9472cdff753fe9f19b96ce2fa"},
+    {file = "bcrypt-3.2.2-cp36-abi3-win32.whl", hash = "sha256:4e029cef560967fb0cf4a802bcf4d562d3d6b4b1bf81de5ec1abbe0f1adb027e"},
+    {file = "bcrypt-3.2.2-cp36-abi3-win_amd64.whl", hash = "sha256:7ff2069240c6bbe49109fe84ca80508773a904f5a8cb960e02a977f7f519b129"},
+    {file = "bcrypt-3.2.2.tar.gz", hash = "sha256:433c410c2177057705da2a9f2cd01dd157493b2a7ac14c8593a16b3dab6b6bfb"},
 ]
 certifi = [
     {file = "certifi-2022.5.18-py3-none-any.whl", hash = "sha256:8d15a5a7fde18536a249c49e07e8e462b8fc13de21b3c80e8a68315dfa227c99"},
@@ -1667,6 +1722,10 @@ six = [
 smmap = [
     {file = "smmap-5.0.0-py3-none-any.whl", hash = "sha256:2aba19d6a040e78d8b09de5c57e96207b09ed71d8e55ce0959eeee6c8e190d94"},
     {file = "smmap-5.0.0.tar.gz", hash = "sha256:c840e62059cd3be204b0c9c9f74be2c09d5648eddd4580d9314c3ecde0b30936"},
+]
+sshfs = [
+    {file = "sshfs-2022.3.1-py3-none-any.whl", hash = "sha256:6d1c7e8fe4785b26adb9da2e6fb6c39a25e83227f4b55849d972d5ea4e38bbe2"},
+    {file = "sshfs-2022.3.1.tar.gz", hash = "sha256:fb75366767efbad8cb73275336ad7f27dd95210782c15898037be329f9864880"},
 ]
 tabulate = [
     {file = "tabulate-0.8.9-py3-none-any.whl", hash = "sha256:d7c013fe7abbc5e491394e10fa845f8f32fe54f8dc60c6622c6cf482d25d47e4"},
