@@ -23,14 +23,14 @@ stages:
     cmd: poetry run python moving_multiscalemnist
     deps:
     - path: moving_multiscalemnist/__main__.py
-      md5: 0edd56384f97d33993d87207d9d4da1b
-      size: 2290
+      md5: 6cd037bbe17e53fb0cab84e76f22ef52
+      size: 2582
     - path: moving_multiscalemnist/digit.py
-      md5: bf452e9c96c3f2ed1b2e93546576fa18
-      size: 2789
+      md5: 47d2b3e48b49949a4f157abe4f632f20
+      size: 3037
     - path: moving_multiscalemnist/generate.py
-      md5: 66c159266bfce62253bd357c691d1685
-      size: 3715
+      md5: dc525c81c7cd2b88deb6b4e4a3cb2253
+      size: 4061
     - path: moving_multiscalemnist/mnist.py
       md5: 250de1c3ca3adca5e6200447edca9167
       size: 1029
@@ -38,11 +38,11 @@ stages:
       md5: 9a6de78bff186bdc60543c77eac741c8
       size: 2517
     - path: poetry.lock
-      md5: 1a02aba6800873edc1d3bc46c42057aa
-      size: 125468
+      md5: 605dcc109d71ccf743673740d1d57723
+      size: 128581
     - path: pyproject.toml
-      md5: 100932d2899b79fbd4b4d9497d643476
-      size: 621
+      md5: 35dfd697f96c7dd525dbcd002cc75f44
+      size: 651
     params:
       moving_multiscalemnist/defaults.py:
         DATA_DIR: mnist
@@ -66,6 +66,6 @@ stages:
         TRAIN_SIZE: 7000
     outs:
     - path: dataset/
-      md5: 8e0476c8dc187e2d3434fba25ac3abb7.dir
-      size: 3403997404
+      md5: f0997229534b2cfbaa8b7a9dd3b906f8.dir
+      size: 3372240964
       nfiles: 510000
