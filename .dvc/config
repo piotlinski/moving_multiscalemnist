@@ -1,5 +1,4 @@
 [core]
-    remote = thorium
-['remote "thorium"']
-    url = ssh://pzielinski@thorium/home/pzielinski/.dvc
-    ask_password = true
+    remote = local
+['remote "local"']
+    url = ~/.dvccache/
