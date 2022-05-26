@@ -22,6 +22,7 @@ stages:
       - moving_multiscalemnist/generate.py
       - moving_multiscalemnist/mnist.py
       - moving_multiscalemnist/sequence.py
+      - moving_multiscalemnist/prepare.py
       - poetry.lock
       - pyproject.toml
     params:

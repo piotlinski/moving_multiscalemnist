@@ -1,5 +1,6 @@
 """Generate dataset."""
 import logging
+from pathlib import Path
 from typing import Generator, Iterable, List, Tuple
 
 import numpy as np
@@ -8,6 +9,7 @@ from tqdm import trange
 
 from moving_multiscalemnist.digit import Digit
 from moving_multiscalemnist.mnist import fetch_mnist
+from moving_multiscalemnist.prepare import prepare_dataset
 from moving_multiscalemnist.sequence import prepare_sequence, save_sequence
 
 logger = logging.getLogger(__name__)
@@ -128,5 +130,8 @@ def generate_dataset(
         )
     ):
         save_sequence(sequence, directory="dataset/test", idx=idx)
+
+    logger.info("Generating annotations.")
+    prepare_dataset(Path("dataset"), train_folder="train", test_folder="test")
 
     logger.info("Done.")
