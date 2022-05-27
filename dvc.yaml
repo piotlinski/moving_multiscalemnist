@@ -10,10 +10,18 @@ stages:
       wget http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz -O mnist/test-labels.gz;
       gunzip -d mnist/test-labels.gz;
     outs:
-      - mnist/test-images
-      - mnist/test-labels
-      - mnist/train-images
-      - mnist/train-labels
+      - mnist/test-images:
+          cache: false
+          persist: true
+      - mnist/test-labels:
+          cache: false
+          persist: true
+      - mnist/train-images:
+          cache: false
+          persist: true
+      - mnist/train-labels:
+          cache: false
+          persist: true
   generate:
     cmd: poetry run python moving_multiscalemnist
     deps:
@@ -39,4 +47,12 @@ stages:
           - TEST_SIZE
           - TRAIN_SIZE
     outs:
+      - dataset/:
+          cache: false
+          persist: true
+  compress:
+    cmd: tar -C dataset -zcvf mnist.tar.gz .
+    deps:
       - dataset/
+    outs:
+      - mnist.tar.gz

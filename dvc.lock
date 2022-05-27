@@ -72,3 +72,14 @@ stages:
       md5: dcdc6a56f4d50332061333785ece2743.dir
       size: 3561675660
       nfiles: 1010004
+  compress:
+    cmd: tar -C dataset -zcvf mnist.tar.gz .
+    deps:
+    - path: dataset/
+      md5: dcdc6a56f4d50332061333785ece2743.dir
+      size: 3561675660
+      nfiles: 1010004
+    outs:
+    - path: mnist.tar.gz
+      md5: 401e308ff28909a86e2f033963e996f9
+      size: 1571625917
