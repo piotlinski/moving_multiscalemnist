@@ -23,7 +23,12 @@ def get_bbox_coords(
     w = x2 - x1
     h = y2 - y1
 
-    return x / image_size[0], y / image_size[1], w / image_size[0], h / image_size[1]
+    return (
+        min(1.0, max(0.0, x / image_size[0])),
+        min(1.0, max(0.0, y / image_size[1])),
+        min(1.0, max(0.0, w / image_size[0])),
+        min(1.0, max(0.0, h / image_size[1])),
+    )
 
 
 def prepare_sequence(

@@ -23,7 +23,7 @@ stages:
           cache: false
           persist: true
   generate:
-    cmd: poetry run python moving_multiscalemnist
+    cmd: poetry run python moving_multiscalemnist && tar -C dataset -zcvf mnist.tar.gz .
     deps:
       - moving_multiscalemnist/__main__.py
       - moving_multiscalemnist/digit.py
@@ -33,6 +33,7 @@ stages:
       - moving_multiscalemnist/prepare.py
       - poetry.lock
       - pyproject.toml
+      - mnist/
     params:
       - moving_multiscalemnist/defaults.py:
           - DATA_DIR
@@ -46,13 +47,5 @@ stages:
           - SIZES
           - TEST_SIZE
           - TRAIN_SIZE
-    outs:
-      - dataset/:
-          cache: false
-          persist: true
-  compress:
-    cmd: tar -C dataset -zcvf mnist.tar.gz .
-    deps:
-      - dataset/
     outs:
       - mnist.tar.gz

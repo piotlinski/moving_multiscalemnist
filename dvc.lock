@@ -20,8 +20,13 @@ stages:
       md5: a25bea736e30d166cdddb491f175f624
       size: 60008
   generate:
-    cmd: poetry run python moving_multiscalemnist
+    cmd: poetry run python moving_multiscalemnist && tar -C dataset -zcvf mnist.tar.gz
+      .
     deps:
+    - path: mnist/
+      md5: 1dc490394c77583af52ebbf3022f0f2d.dir
+      size: 54950168
+      nfiles: 5
     - path: moving_multiscalemnist/__main__.py
       md5: 6cd037bbe17e53fb0cab84e76f22ef52
       size: 2582
@@ -38,8 +43,8 @@ stages:
       md5: ea044f6c86727362ce338fbd55b69c8c
       size: 2698
     - path: moving_multiscalemnist/sequence.py
-      md5: 9a6de78bff186bdc60543c77eac741c8
-      size: 2517
+      md5: 62e0618e20302b10b1fcc80498e6d56a
+      size: 2638
     - path: poetry.lock
       md5: 605dcc109d71ccf743673740d1d57723
       size: 128581
@@ -68,18 +73,6 @@ stages:
         TEST_SIZE: 3000
         TRAIN_SIZE: 7000
     outs:
-    - path: dataset/
-      md5: dcdc6a56f4d50332061333785ece2743.dir
-      size: 3561675660
-      nfiles: 1010004
-  compress:
-    cmd: tar -C dataset -zcvf mnist.tar.gz .
-    deps:
-    - path: dataset/
-      md5: dcdc6a56f4d50332061333785ece2743.dir
-      size: 3561675660
-      nfiles: 1010004
-    outs:
     - path: mnist.tar.gz
-      md5: 401e308ff28909a86e2f033963e996f9
-      size: 1571625917
+      md5: c90589bab761d1422afa50dce97b65fe
+      size: 1581838309
