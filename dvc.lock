@@ -43,8 +43,8 @@ stages:
       md5: ea044f6c86727362ce338fbd55b69c8c
       size: 2698
     - path: moving_multiscalemnist/sequence.py
-      md5: 62e0618e20302b10b1fcc80498e6d56a
-      size: 2638
+      md5: c0f183a647d4c9cbf5f9d18d29fbce2c
+      size: 2601
     - path: poetry.lock
       md5: 605dcc109d71ccf743673740d1d57723
       size: 128581
@@ -74,5 +74,5 @@ stages:
         TRAIN_SIZE: 7000
     outs:
     - path: mnist.tar.gz
-      md5: c90589bab761d1422afa50dce97b65fe
-      size: 1581838309
+      md5: 0464069174299f4652d897824052098f
+      size: 1585377650

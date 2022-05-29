@@ -13,22 +13,19 @@ def get_bbox_coords(
     bbox: Tuple[int, int, int, int], x1: int, y1: int, image_size: Tuple[int, int]
 ) -> Tuple[float, float, float, float]:
     """Calculate XYWH bbox based on bbox coordinates, location and image size."""
-    x2 = x1 + bbox[2]
-    y2 = y1 + bbox[3]
-    x1 = x1 + bbox[0]
-    y1 = y1 + bbox[1]
+    width, height = image_size
+
+    x2 = min(width, max(0, x1 + bbox[2]))
+    y2 = min(height, max(0, y1 + bbox[3]))
+    x1 = min(width, max(0, x1 + bbox[0]))
+    y1 = min(height, max(0, y1 + bbox[1]))
 
     x = (x1 + x2) / 2
     y = (y1 + y2) / 2
     w = x2 - x1
     h = y2 - y1
 
-    return (
-        min(1.0, max(0.0, x / image_size[0])),
-        min(1.0, max(0.0, y / image_size[1])),
-        min(1.0, max(0.0, w / image_size[0])),
-        min(1.0, max(0.0, h / image_size[1])),
-    )
+    return x / width, y / height, w / width, h / height
 
 
 def prepare_sequence(
