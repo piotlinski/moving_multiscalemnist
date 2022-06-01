@@ -60,7 +60,7 @@ def prepare_dataset(path: Path, train_folder: str, test_folder: str):
         fp.write(f"train = data/{TRAIN_FILE}\n")
         fp.write(f"valid = data/{TEST_FILE}\n")
         fp.write(f"names = data/{NAMES_FILE}\n")
-        fp.write("backup = backup/\n")
+        fp.write("backup = data/\n")
 
 
 if __name__ == "__main__":

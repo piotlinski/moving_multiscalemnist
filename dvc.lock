@@ -40,8 +40,8 @@ stages:
       md5: 250de1c3ca3adca5e6200447edca9167
       size: 1029
     - path: moving_multiscalemnist/prepare.py
-      md5: ea044f6c86727362ce338fbd55b69c8c
-      size: 2698
+      md5: f2811c0668f5666417fb6c2ca183548d
+      size: 2696
     - path: moving_multiscalemnist/sequence.py
       md5: c0f183a647d4c9cbf5f9d18d29fbce2c
       size: 2601
@@ -60,7 +60,7 @@ stages:
         - 416
         MAX_DIGITS: 5
         MIN_DIGITS: 2
-        N_FRAMES: 50
+        N_FRAMES: 15
         OSCILLATIONS:
         - 1.0
         - 1.5
@@ -74,5 +74,5 @@ stages:
         TRAIN_SIZE: 7000
     outs:
     - path: mnist.tar.gz
-      md5: 0464069174299f4652d897824052098f
-      size: 1585377650
+      md5: bff18825f616cca9cb66156fae232980
+      size: 493482561
