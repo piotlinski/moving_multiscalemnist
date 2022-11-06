@@ -30,21 +30,25 @@ class Digit:
         self._image = Image.fromarray(image)
         self.label = label
 
-        self._size = np.random.choice(sizes)
-        self._x = np.random.uniform(0, 1)
-        self._y = np.random.uniform(0, 1)
+        self._t: int = 0
+        self._T: int = fps
 
         self._image_width, self._image_height = image_size
 
-        self._vel_x = np.random.uniform(-1, 1)
-        self._vel_y = np.random.uniform(-1, 1)
-
+        self._size = np.random.choice(sizes)
         self._osc_t = np.random.choice(oscillations)
         self._osc_var = np.random.choice(oscillations_variances)
         self._osc_dir = np.random.choice([1, -1])
 
-        self._t: int = 0
-        self._T: int = fps
+        self._x = np.random.uniform(self.x_margin, 1 - self.x_margin)
+        self._y = np.random.uniform(self.y_margin, 1 - self.y_margin)
+
+        self._vel_x = np.random.uniform(-1, 1)
+        self._vel_y = np.random.uniform(-1, 1)
+
+        self._x_bounce = -1
+        self._y_bounce = -1
+        self._bounce_thresh = 10
 
     @property
     def image(self) -> Image.Image:
@@ -68,6 +72,14 @@ class Digit:
         return int(self._size * self._sin())
 
     @property
+    def x_margin(self) -> float:
+        return self.size / (4 * self._image_width)
+
+    @property
+    def y_margin(self) -> float:
+        return self.size / (4 * self._image_height)
+
+    @property
     def bbox(self) -> Tuple[int, int, int, int]:
         """Calculate X1Y1X2Y2 bbox coordinates.
 
@@ -80,12 +92,22 @@ class Digit:
         return white_xs.min(), white_ys.min(), white_xs.max(), white_ys.max()
 
     def shall_bounce_horizontally(self) -> bool:
-        margin = self.size / (4 * self._image_width)
-        return self._x < margin or 1 - margin < self._x
+        shall_bounce = self._x < self.x_margin or 1 - self.x_margin < self._x
+        if shall_bounce:
+            self._x_bounce += 1
+            if self._x_bounce == self._bounce_thresh:
+                self._x_bounce = 0
+
+        return shall_bounce and self._x_bounce == 0
 
     def shall_bounce_vertically(self) -> bool:
-        margin = self.size / (4 * self._image_height)
-        return self._y < margin or 1 - margin < self._y
+        shall_bounce = self._y < self.y_margin or 1 - self.y_margin < self._y
+        if shall_bounce:
+            self._y_bounce += 1
+            if self._y_bounce == self._bounce_thresh:
+                self._y_bounce = 0
+
+        return shall_bounce and self._y_bounce == 0
 
     def _update_position(self):
         self._x += self._vel_x / self._T
