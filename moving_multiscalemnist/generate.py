@@ -74,7 +74,7 @@ def generate_subset(
                 oscillations_variances=oscillations_variances,
                 fps=fps,
             )
-            for idx in range(start_idx, end_idx + 1)
+            for idx in range(start_idx, end_idx)
         ]
         yield prepare_sequence(digits, n_frames=n_frames, image_size=image_size)
 
