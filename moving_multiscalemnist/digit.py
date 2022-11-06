@@ -80,22 +80,24 @@ class Digit:
         return white_xs.min(), white_ys.min(), white_xs.max(), white_ys.max()
 
     def shall_bounce_horizontally(self) -> bool:
-        return self._x <= 0 or 1 <= self._x
+        margin = self.size / (4 * self._image_width)
+        return self._x < margin or 1 - margin < self._x
 
     def shall_bounce_vertically(self) -> bool:
-        return self._y <= 0 or 1 <= self._y
+        margin = self.size / (4 * self._image_height)
+        return self._y < margin or 1 - margin < self._y
 
     def _update_position(self):
         self._x += self._vel_x / self._T
         self._y += self._vel_y / self._T
 
     def update(self) -> "Digit":
-        self._update_position()
-
         if self.shall_bounce_horizontally():
             self._vel_x = -self._vel_x
         if self.shall_bounce_vertically():
             self._vel_y = -self._vel_y
+
+        self._update_position()
 
         self._t += 1
 
