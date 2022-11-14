@@ -43,6 +43,7 @@ stages:
           - MIN_DIGITS
           - N_FRAMES
           - OSCILLATIONS
+          - OSCILLATIONS_VARIANCES
           - SEED
           - SIZES
           - TEST_SIZE
