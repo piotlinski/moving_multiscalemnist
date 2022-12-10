@@ -56,8 +56,8 @@ stages:
         DATA_DIR: mnist
         FPS: 10
         IMAGE_SIZE:
-        - 128
-        - 128
+        - 64
+        - 64
         MAX_DIGITS: 8
         MIN_DIGITS: 2
         N_FRAMES: 10
@@ -72,5 +72,5 @@ stages:
         TRAIN_SIZE: 2500
     outs:
     - path: mnist.tar.gz
-      md5: e1ce1f6f4952f9047fec3f5a85da27b8
-      size: 23482775
+      md5: 45fe569d5bb814a37237151ca9e7a73c
+      size: 21272239
