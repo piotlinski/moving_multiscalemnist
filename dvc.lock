@@ -24,9 +24,9 @@ stages:
       .
     deps:
     - path: mnist/
-      md5: 1dc490394c77583af52ebbf3022f0f2d.dir
-      size: 54950168
-      nfiles: 5
+      md5: e71052e64503f85c7d182ff5ad8857c5.dir
+      size: 64862590
+      nfiles: 6
     - path: moving_multiscalemnist/__main__.py
       md5: 6cd037bbe17e53fb0cab84e76f22ef52
       size: 2582
@@ -58,19 +58,26 @@ stages:
         IMAGE_SIZE:
         - 128
         - 128
-        MAX_DIGITS: 8
+        MAX_DIGITS: 6
         MIN_DIGITS: 2
         N_FRAMES: 10
         OSCILLATIONS:
         - 1.0
+        - 1.5
+        - 2.0
         OSCILLATIONS_VARIANCES:
         - 0.0
+        - 0.1
+        - 0.2
+        - 0.3
         SEED: 13
         SIZES:
         - 16
+        - 32
+        - 64
         TEST_SIZE: 600
         TRAIN_SIZE: 2500
     outs:
     - path: mnist.tar.gz
-      md5: e1ce1f6f4952f9047fec3f5a85da27b8
-      size: 23482775
+      md5: 91855978aa842a7d9fdb9ed323177670
+      size: 43876608
