@@ -72,12 +72,12 @@ stages:
         - 0.3
         SEED: 13
         SIZES:
-        - 16
-        - 32
-        - 64
+        - 24
+        - 48
+        - 72
         TEST_SIZE: 2000
         TRAIN_SIZE: 8000
     outs:
     - path: mnist.tar.gz
-      md5: fc3dac685f593f4c0be7e469d398c5f9
-      size: 169034179
+      md5: 32e06db37ccd1165e256ca2c2412327f
+      size: 207367359
