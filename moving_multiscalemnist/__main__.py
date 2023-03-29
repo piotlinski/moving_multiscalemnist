@@ -16,6 +16,7 @@ from moving_multiscalemnist.defaults import (
     SIZES,
     TEST_SIZE,
     TRAIN_SIZE,
+    VELOCITY,
 )
 from moving_multiscalemnist.generate import generate_dataset
 
@@ -80,6 +81,9 @@ if __name__ == "__main__":
     parser.add_argument(
         "--fps", help="Frames per second (period length)", type=float, default=FPS
     )
+    parser.add_argument(
+        "--velocity", "-v", help="Digit velocity", type=float, default=VELOCITY
+    )
 
     args = parser.parse_args()
     np.random.seed(args.seed)
@@ -95,4 +99,5 @@ if __name__ == "__main__":
         oscillations=args.oscillations,
         oscillations_variances=args.oscillations_variances,
         fps=args.fps,
+        velocity=args.velocity,
     )

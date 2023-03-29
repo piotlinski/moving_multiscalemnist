@@ -35,6 +35,7 @@ def generate_subset(
     oscillations: Tuple[float, ...],
     oscillations_variances: Tuple[float, ...],
     fps: int,
+    velocity: float,
 ) -> Generator[
     Iterable[
         Tuple[Image, List[Tuple[float, float, float, float]], List[int], List[int]]
@@ -54,6 +55,7 @@ def generate_subset(
     :param oscillations: digit size change periods coefficients
     :param oscillations_variances: proportion in which size oscillates
     :param fps: number of frames in one second (period length)
+    :param velocity: velocity of digit movement
     :return: generator of sequences of frames, boxes, labels and track ids
     """
     images, labels = shuffle_subset(subset)
@@ -73,6 +75,7 @@ def generate_subset(
                 oscillations=oscillations,
                 oscillations_variances=oscillations_variances,
                 fps=fps,
+                velocity=velocity,
             )
             for idx in range(start_idx, end_idx)
         ]
@@ -93,6 +96,7 @@ def generate_dataset(
     oscillations: Tuple[float, ...],
     oscillations_variances: Tuple[float, ...],
     fps: int,
+    velocity: float,
 ):
     """Generate sequences and save to file."""
     mnist = fetch_mnist(data_dir)
@@ -110,6 +114,7 @@ def generate_dataset(
             oscillations=oscillations,
             oscillations_variances=oscillations_variances,
             fps=fps,
+            velocity=velocity,
         )
     ):
         save_sequence(sequence, directory="dataset/train", idx=idx)
@@ -127,6 +132,7 @@ def generate_dataset(
             oscillations=oscillations,
             oscillations_variances=oscillations_variances,
             fps=fps,
+            velocity=velocity,
         )
     ):
         save_sequence(sequence, directory="dataset/test", idx=idx)

@@ -17,6 +17,7 @@ class Digit:
         oscillations: Tuple[float, ...] = (0.8, 1.0, 1.2, 1.4),
         oscillations_variances: Tuple[float, ...] = (0.0, 0.1, 0.2, 0.3),
         fps: int = 10,
+        velocity: float = 1.0,
     ):
         """
         :param image: digit image as np array
@@ -26,6 +27,7 @@ class Digit:
         :param oscillations: oscillation period factor
         :param oscillations_variances: proportion in which size oscillates
         :param fps: number of frames per second (period)
+        :param velocity: velocity of digit movement
         """
         self._image = Image.fromarray(image)
         self.label = label
@@ -43,8 +45,8 @@ class Digit:
         self._x = np.random.uniform(self.x_margin, 1 - self.x_margin)
         self._y = np.random.uniform(self.y_margin, 1 - self.y_margin)
 
-        self._vel_x = np.random.uniform(-1, 1)
-        self._vel_y = np.random.uniform(-1, 1)
+        self._vel_x = np.random.uniform(-velocity, velocity)
+        self._vel_y = np.random.uniform(-velocity, velocity)
 
         self._x_bounce = -1
         self._y_bounce = -1
