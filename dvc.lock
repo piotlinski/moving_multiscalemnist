@@ -58,7 +58,7 @@ stages:
         IMAGE_SIZE:
         - 128
         - 128
-        MAX_DIGITS: 8
+        MAX_DIGITS: 5
         MIN_DIGITS: 2
         N_FRAMES: 10
         OSCILLATIONS:
@@ -72,12 +72,12 @@ stages:
         - 0.3
         SEED: 13
         SIZES:
-        - 24
         - 48
         - 72
+        - 96
         TEST_SIZE: 2000
         TRAIN_SIZE: 8000
     outs:
     - path: mnist.tar.gz
-      md5: 32e06db37ccd1165e256ca2c2412327f
-      size: 207367359
+      md5: fba300a3d939083fc7013cab2a14e2ce
+      size: 216896806
